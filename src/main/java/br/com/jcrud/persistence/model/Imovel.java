@@ -7,12 +7,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "imovel")
+@NamedQueries({
+	@NamedQuery(name = Imovel.BUSCA_POR_NOME, query = Imovel.BUSCA_POR_NOME)
+})
 public class Imovel extends AbstractEntity{
 
 	
@@ -26,6 +31,8 @@ public class Imovel extends AbstractEntity{
 	private String unidade;
 	private String inscricao;
 
+	public static final String BUSCA_POR_NOME="select new br.com.jcrud.persistence.model.VO.ImovelVO(i.id, i.contribuinte.id, i.contribuinte.nome, i.contribuinte.cpf, i.contribuinte.rua.nome,  i.inscricao) from Imovel i where i.contribuinte.nome like :nome";
+	
 	@NotNull(message="Campo obrigatorio!")
 	@ManyToOne
 	@JoinColumn(name="contribuinte_id")

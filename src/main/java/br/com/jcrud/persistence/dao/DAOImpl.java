@@ -96,7 +96,38 @@ public class DAOImpl<T> implements DAO<T> {
         return maxResults == 0 ? query.getResultList() : query.setMaxResults(maxResults).getResultList();
        // return  null;
     }
+//para aqueles que gosta de anotar as querie na model
+    @Override
+    public List<T> findByHQLNamedQuery(String queryNamed,int maxResults){
+        String hql = queryNamed;
+        TypedQuery<T> query = em.createNamedQuery(hql,this.classe);
+        return maxResults == 0 ? query.getResultList() : query.setMaxResults(maxResults).getResultList();
 
+    }
+    
+    @Override
+    public List<T> findByHQLNamedQuery(String queryNamed, List<Object> value, int maxResults){
+        String hql =queryNamed;
+        Pattern pattern = Pattern.compile("(:\\w+)");
+        Matcher matcher = pattern.matcher(hql);
+        List<String> params = new ArrayList<>();
+        while (matcher.find()){
+            params.add(matcher.group().replace( ":",  ""));
+        }
+        System.out.println();
+        System.out.print(hql);
+        TypedQuery<T> query = em.createNamedQuery(hql,this.classe);
+        for (int i = 0; i < params.size() ; i++) {
+            System.out.println(params.get(i)+ " - " +  value.get(i));
+            query.setParameter(params.get(i), value.get(i));
+        }
+        System.out.println();
+        System.out.println();
+        return maxResults == 0 ? query.getResultList() : query.setMaxResults(maxResults).getResultList();
+       // return  null;
+    }
+    
+    
     @Override
     public int updateHQLQuery(String queryId){
     	  em.getTransaction().begin();

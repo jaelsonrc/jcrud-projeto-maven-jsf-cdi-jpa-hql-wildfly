@@ -19,4 +19,6 @@ public interface DAO<T> extends Serializable {
 	int updateHQLQuery(String queryId);
 	int updateHQLQuery(String queryId, List<Object> value);
 	Query query(String hql);
+	List<T> findByHQLNamedQuery(String queryNamed, List<Object> value, int maxResults);
+	List<T> findByHQLNamedQuery(String queryNamed, int maxResults);
 }

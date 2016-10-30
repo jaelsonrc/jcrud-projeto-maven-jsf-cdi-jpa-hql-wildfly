@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.jcrud.persistence.daointerfaces.DAO;
+import br.com.jcrud.persistence.model.Imovel;
 import br.com.jcrud.persistence.model.VO.ImovelVO;
 import br.com.jcrud.util.StringUtil;
 
@@ -27,12 +28,14 @@ public class ConsultaImovelBean implements Serializable {
 	private String strPesquisa;
 	
 	public void init() {
+		
 		setImoveis(dao.findByHQLQuery("queryImovelVOAll", 0));
 		
 	}
 	
 	public void pesquisar(){
-		setImoveis(dao.findByHQLQuery("searchImovelByName", Collections.singletonList(StringUtil.likeLower(this.getStrPesquisa())), 0));
+		//sugestão de Henrique Smoco 
+		setImoveis(dao.findByHQLNamedQuery(Imovel.BUSCA_POR_NOME, Collections.singletonList(StringUtil.likeLower(this.getStrPesquisa())), 0));
 	}
 
 	public List<ImovelVO> getImoveis() {		
