@@ -65,4 +65,7 @@ CRUD completo com JSF, CDI, Hibernate 5.0.10/JPA 2.1 com c3p0 como pool de conex
 
 				Espero que tenha ajudado vocês no estudo e sugiro ainda a crianção do pacote services para separa as regra de negocio do beans...
 				
+				Quero agradecer ao DevDojo pelo maravilhoso curso projeto inicial graças a eles pode fazer toda a base do crud  e recomendo vcs fazer curso e se inscrever
+				https://www.youtube.com/playlist?list=PL62G310vn6nGH6ugBwHbskXxKIaoqz_dk
+				
 				qualquer duvida mande um e-mail: jaelsonrc@ymail.com
