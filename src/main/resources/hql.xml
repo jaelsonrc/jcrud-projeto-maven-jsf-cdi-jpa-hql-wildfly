@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <query id="searchProjectByName">
+        SELECT p from Projeto p where nome like :nome
+    </query>
+    <query id="searchProjectByNameAndId">
+        SELECT p from Projeto p where nome like :nome and id = :id
+    </query>
+    <query id="searchImovelByName">
+    select new br.com.jcrud.persistence.model.VO.ImovelVO(i.id, i.contribuinte.id, i.contribuinte.nome, i.contribuinte.cpf, i.contribuinte.rua.nome,  i.inscricao) from Imovel i where i.contribuinte.nome like :nome
+    </query>
+    <query id="queryImovelVOAll">
+     select new br.com.jcrud.persistence.model.VO.ImovelVO(i.id, i.contribuinte.id, i.contribuinte.nome, i.contribuinte.cpf,  i.contribuinte.rua.nome, i.inscricao) from Imovel i
+    </query>
+      <query id="updateQtdeImovel">
+        UPDATE Contribuinte c SET c.qtdeImovel = (SELECT COUNT(*) from Imovel as i GROUP BY i.contribuinte  HAVING i.contribuinte = c)
+    </query>
+</queries>

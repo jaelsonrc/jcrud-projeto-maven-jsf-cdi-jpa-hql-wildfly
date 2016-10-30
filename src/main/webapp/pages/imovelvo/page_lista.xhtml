@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<p:panel header="Consulta Imovel">
+	<p:inputText value="#{consultaImovelBean.strPesquisa}" placeholder="Pesquisar"/>
+	<p:commandButton icon="ui-icon-search" value="Pesquisar" action="#{consultaImovelBean.pesquisar()}"
+		update="form_principal"/>
+		<p:dataTable id="tabela" value="#{consultaImovelBean.imoveis}" var="item"
+			 paginator="true"
+			rows="5" paginatorPosition="bottom" rowsPerPageTemplate="5,10,15">
+			<p:column headerText="Codigo" width="150">
+				<h:outputText value="#{item.id}" />
+			</p:column>
+			<p:column headerText="Nome" >
+			
+				<h:outputText value="#{item.nome}" />
+			</p:column>
+			<p:column headerText="CPF" width="150">
+				<h:outputText value="#{item.cpf}" />
+			</p:column>
+			<p:column headerText="Inscricão" width="150">
+				<h:outputText value="#{item.inscricao}" />
+			</p:column>
+
+
+
+		
+
+		</p:dataTable>
+
+	</p:panel>
+
+
+</ui:composition>

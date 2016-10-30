@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<p:panel header="Lista de Contribuinte"
+		rendered="#{contribuinteBean.contribuinte == null}">
+		<p:commandButton value="Novo Contribuinte" icon="adicionar-icon"
+			action="#{contribuinteBean.add()}" update="form_principal" />
+
+		<p:dataTable id="tabela" value="#{contribuinteBean.contribuintes}"
+			var="item" filteredValue="#{contribuinteBean.contribuintesFiltrado}"
+			paginator="true" rows="5" paginatorPosition="bottom"
+			rowsPerPageTemplate="5,10,15">
+			<p:column headerText="Codigo" width="150">
+				<h:outputText value="#{item.id}" />
+			</p:column>
+			<p:column headerText="Nome" filterMatchMode="contains"
+				sortBy="#{item.nome}" filterBy="#{item.nome}">
+				<h:outputText value="#{item.nome}" />
+			</p:column>
+			<p:column headerText="CPF" >
+				<h:outputText value="#{item.cpf}" />
+			</p:column>
+			<p:column headerText="Rua" >
+				<h:outputText value="#{item.rua.tipo} - #{item.rua.nome}" />
+			</p:column>
+			<p:column headerText="Numero" >
+				<h:outputText value="#{item.numero}" />
+			</p:column>
+			<p:column headerText="Qtde Imovel" >
+				<h:outputText value="#{item.qtdeImovel}" />
+			</p:column>
+
+
+
+			<p:column headerText="Ação" style="text-align:center;" width="150"
+				exportable="false">
+				<p:commandButton icon="editar-icon"
+					action="#{contribuinteBean.edit(item)}" update="form_principal" />
+				<p:commandButton icon="excluir-icon"
+					style="color:red; margin-left:20px;"
+					actionListener="#{contribuinteBean.selectDelete(item)}"
+					oncomplete="PF('confirmaExclusao').show();" update="form_principal" />
+
+			</p:column>
+
+		</p:dataTable>
+
+	</p:panel>
+	<p:confirmDialog
+		message="Deseja realmente excluir este contribuinte: #{contribuinteBean.exclusaoContribuinte.nome}?"
+		widgetVar="confirmaExclusao">
+
+		<p:commandButton value="Sim" update="form_principal"
+			oncomplete="PF('confirmaExclusao').hide();"
+			action="#{contribuinteBean.delete()}" />
+		<p:commandButton value="Não"
+			oncomplete="PF('confirmaExclusao').hide();" />
+	</p:confirmDialog>
+
+
+</ui:composition>
