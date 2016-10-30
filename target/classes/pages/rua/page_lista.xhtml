@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+	<p:panel header="Lista de Rua" rendered="#{ruaBean.rua == null}">
+		<p:commandButton value="Nova Rua" icon="adicionar-icon"
+			action="#{ruaBean.add()}" update="form_principal" />
+
+		<p:dataTable id="tabela" value="#{ruaBean.ruas}" var="item"
+			filteredValue="#{ruaBean.ruasFiltrado}" paginator="true" rows="5"
+			paginatorPosition="bottom" rowsPerPageTemplate="5,10,15">
+			<p:column headerText="Codigo" width="150">
+				<h:outputText value="#{item.id}" />
+			</p:column>
+			<p:column headerText="Nome" filterMatchMode="contains"
+				sortBy="#{item.nome}" filterBy="#{item.nome}">
+				<h:outputText value="#{item.nome}" />
+			</p:column>
+			<p:column headerText="Tipo" width="150">
+				<h:outputText value="#{item.tipo}" />
+			</p:column>
+				<p:column headerText="Data de cadastro">
+				<h:outputText value="#{item.dataCadastro}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Ação" style="text-align:center;" width="150"
+				exportable="false">
+				<p:commandButton icon="editar-icon" action="#{ruaBean.edit(item)}"
+					update="form_principal" />
+				<p:commandButton icon="excluir-icon"
+					style="color:red; margin-left:20px;"
+					actionListener="#{ruaBean.selectDelete(item)}"
+					oncomplete="PF('confirmaExclusao').show();" update="form_principal" />
+
+			</p:column>
+
+		</p:dataTable>
+
+	</p:panel>
+	<p:confirmDialog
+		message="Deseja realmente excluir este rua: #{ruaBean.exclusaoRuas.nome}?"
+		widgetVar="confirmaExclusao">
+
+		<p:commandButton value="Sim" update="form_principal"
+			oncomplete="PF('confirmaExclusao').hide();"
+			action="#{ruaBean.delete()}" />
+		<p:commandButton value="Não"
+			oncomplete="PF('confirmaExclusao').hide();" />
+	</p:confirmDialog>
+
+
+</ui:composition>

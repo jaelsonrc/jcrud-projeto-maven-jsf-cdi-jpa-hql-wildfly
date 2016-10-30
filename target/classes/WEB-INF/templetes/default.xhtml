@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<title>Crud Completo - <ui:insert name="titulo" /></title>
+	<meta name="descrption" content="Projeto Base" />
+	<meta name="keywords" content="JSF, CDI, Java" />
+	<meta name="author" content="Jaelson" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="tema.css" />
+</h:head>
+<h:body>
+
+
+	<h:form>
+		<p:growl id="messages" />
+
+		<p:menubar>
+			<p:submenu label="#{m.Cadastro}" icon="ui-icon-document">
+				<p:submenu label="#{m.Novo}" icon="ui-icon-contact">
+					<p:menuitem value="#{m.Projeto}" outcome="pretty:projetomanutencao" />
+					<p:menuitem value="#{m.Rua}" outcome="pretty:ruamanutencao" />
+					<p:menuitem value="#{m.Contribuinte}"
+						outcome="pretty:contribuintemanutencao" />
+					<p:menuitem value="#{m.Imovel}" outcome="pretty:imovelmanutencao" />
+				</p:submenu>
+				<p:separator />
+				<p:menuitem value="#{m.Sair}"
+					url="https://github.com/jaelsonrc?tab=repositories" />
+			</p:submenu>
+
+			<p:submenu label="#{m.Movimentacao}" icon="ui-icon-pencil">
+				<p:menuitem value="#{m.Consulta} #{m.Imovel}"
+					outcome="pretty:imovelconsulta" icon="ui-icon-pencil" />
+
+			</p:submenu>
+
+
+
+
+			<p:submenu label="#{m.Ajuda}" icon="ui-icon-help">
+				<p:menuitem value="#{m.Sobre}" url="#"  onclick="PF('dlg').show();"/>
+			</p:submenu>
+
+			<p:menuitem value="#{m.Sair}"
+				url="https://github.com/jaelsonrc?tab=repositories"
+				icon="ui-icon-close" />
+
+
+		</p:menubar>
+	</h:form>
+
+
+
+	<ui:insert name="content">
+
+	</ui:insert>
+
+	<p:dialog header="Sobre" widgetVar="dlg" showEffect="explode"
+		hideEffect="bounce" height="100">
+		<h:outputText value="Desenvolvedor: Jaelson" />
+		<br/>
+		<h:outputText value="Sujestão ou duvida mande um" />
+		<h:outputText value=" e-mail:jaelsonrc@ymail.com" />		
+		<h:outputText value="Aprendi muito com curso Devdojo recomendo assistir e se inscrever no canal foi de la que fiz a maioria do codigos
+		https://www.youtube.com/playlist?list=PL62G310vn6nGH6ugBwHbskXxKIaoqz_dk" />
+	</p:dialog>
+
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+
+</h:body>
+</html>

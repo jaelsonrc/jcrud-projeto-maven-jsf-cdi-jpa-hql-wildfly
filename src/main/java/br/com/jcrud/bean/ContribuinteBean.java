@@ -44,7 +44,7 @@ public class ContribuinteBean implements Serializable {
 	}
 
 	public void updateQtde() {
-		dao.updateHQLQueryNoParamaters("updateQtdeImovel");
+		dao.updateHQLQuery("updateQtdeImovel");
 	}
 
 	public void back() {

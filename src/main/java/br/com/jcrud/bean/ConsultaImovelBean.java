@@ -27,7 +27,7 @@ public class ConsultaImovelBean implements Serializable {
 	private String strPesquisa;
 	
 	public void init() {
-		setImoveis(dao.findByHQLQueryNoParamaters("queryImovelVOAll", 0));
+		setImoveis(dao.findByHQLQuery("queryImovelVOAll", 0));
 		
 	}
 	

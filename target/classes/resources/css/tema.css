@@ -1,0 +1,21 @@
+.salvar-icon{background: url("icons/salvar.png.jsf") !important;}
+.voltar-icon{background: url("icons/voltar.png.jsf") !important;}
+.adicionar-icon{background: url("icons/adicionar.png.jsf") !important;}
+.editar-icon{background: url("icons/editar.png.jsf") !important;}
+.excluir-icon{background: url("icons/excluir.png.jsf") !important;}
+.cursos-icon{background: url("icons/cursos.png.jsf") !important;}
+.cancelar-icon{background: url("icons/cancelar.png.jsf") !important;}
+
+.ui-growl{
+	top: 10%;
+	left: 40%;
+}
+
+.menu-template{
+	position: absolute;
+}
+
+.principal-template{
+	position: absolute;
+	margin-left: 190px;
+}

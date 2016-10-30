@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.3
+   http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
+
+	<url-mapping id="projetomanutencao">
+		<pattern value="/projeto/" />
+		<view-id value="/pages/projeto/page_principal.jsf" />
+		<action onPostback="false">#{projetoBean.init}</action>
+	</url-mapping>
+	<url-mapping id="ruamanutencao">
+		<pattern value="/rua/" />
+		<view-id value="/pages/rua/page_principal.jsf" />
+		<action onPostback="false">#{ruaBean.init}</action>
+	</url-mapping>
+	<url-mapping id="contribuintemanutencao">
+		<pattern value="/contribuinte/" />
+		<view-id value="/pages/contribuinte/page_principal.jsf" />
+		<action onPostback="false">#{contribuinteBean.init}</action>
+	</url-mapping>
+	<url-mapping id="imovelmanutencao">
+		<pattern value="/imovel/" />
+		<view-id value="/pages/imovel/page_principal.jsf" />
+		<action onPostback="false">#{imovelBean.init}</action>
+	</url-mapping>
+	<url-mapping id="imovelconsulta">
+		<pattern value="/imovelconsulta/" />
+		<view-id value="/pages/imovelvo/page_principal.jsf" />
+		<action onPostback="false">#{consultaImovelBean.init}</action>
+	</url-mapping>
+</pretty-config>

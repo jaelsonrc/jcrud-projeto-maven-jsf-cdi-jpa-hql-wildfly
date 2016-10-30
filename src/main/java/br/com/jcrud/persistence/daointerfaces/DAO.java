@@ -12,11 +12,11 @@ public interface DAO<T> extends Serializable {
     T save(T entity);
     T update(T entity);
     List<T> getAll();
-    List<T> findByHQLQueryNoParamaters(String queryId, int maxResults);
+    List<T> findByHQLQuery(String queryId, int maxResults);
     List<T> findByHQLQuery(String queryId, List<Object> value, int maxResults);
     void remove(T entity);
     T finById(Serializable id);
-	int updateHQLQueryNoParamaters(String queryId);
+	int updateHQLQuery(String queryId);
 	int updateHQLQuery(String queryId, List<Object> value);
 	Query query(String hql);
 }

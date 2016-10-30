@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templetes/default.xhtml">
+	<ui:define name="titulo">Contribuinte</ui:define>
+	<ui:define name="content">
+	
+		<h:form id="form_principal" enctype="multipart/form-data">	
+			<p:growl id="messages" />	
+			<ui:include src="/pages/contribuinte/page_formulario.xhtml" />
+			<ui:include src="/pages/contribuinte/page_lista.xhtml" />
+		</h:form>
+
+
+	</ui:define>
+	
+</ui:composition>

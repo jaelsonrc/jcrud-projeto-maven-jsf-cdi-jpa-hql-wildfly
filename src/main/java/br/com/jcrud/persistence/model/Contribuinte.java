@@ -55,7 +55,7 @@ public class Contribuinte extends AbstractEntity {
 	}
 
 	@NotNull(message="Campo obrigatorio")
-    @Size(min=2, max=5, message="Minimo 3 e o maximo 50 caracter")
+    @Size(min=2, max=50, message="Minimo 3 e o maximo 50 caracter")
 	@Column(name = "nome", nullable = false, length = 50)
 	public String getNome() {
 		return this.nome;

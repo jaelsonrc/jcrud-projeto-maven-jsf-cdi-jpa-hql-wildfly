@@ -1,17 +1,22 @@
 package br.com.jcrud.persistence.dao;
 
-import br.com.jcrud.persistence.daointerfaces.DAO;
-import br.com.jcrud.persistence.fileservice.FileXMLService;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import br.com.jcrud.persistence.daointerfaces.DAO;
+import br.com.jcrud.persistence.fileservice.FileXMLService;
+
+
+
+
 
 /**
  * Created by jaels on 20/10/2016.
@@ -42,7 +47,7 @@ public class DAOImpl<T> implements DAO<T> {
 
     @Override
     public T save(T entity) {
-        em.merge(entity);
+    	em.persist(entity);
         em.flush();
         return  entity;
     }
@@ -62,7 +67,7 @@ public class DAOImpl<T> implements DAO<T> {
     }
 
     @Override
-    public List<T> findByHQLQueryNoParamaters(String queryId,int maxResults){
+    public List<T> findByHQLQuery(String queryId,int maxResults){
         String hql = hqlQuery.findValue(queryId);
         TypedQuery<T> query = em.createQuery(hql,this.classe);
         return maxResults == 0 ? query.getResultList() : query.setMaxResults(maxResults).getResultList();
@@ -93,7 +98,7 @@ public class DAOImpl<T> implements DAO<T> {
     }
 
     @Override
-    public int updateHQLQueryNoParamaters(String queryId){
+    public int updateHQLQuery(String queryId){
     	  em.getTransaction().begin();
     	  String hql = hqlQuery.findValue(queryId);
     	  Query  query = em.createQuery(hql);
